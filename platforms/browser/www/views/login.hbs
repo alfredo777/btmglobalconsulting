@@ -1,0 +1,80 @@
+<main class="mdl-layout__content ">
+<div class="login"> <!-- card -->
+<div class="account-info mdl-color--primary">
+  <div class="account-navigation"> <!-- top icons -->
+  
+  <div class="clr"></div>
+  <div class="minilogo-account user1"></div> <!-- user -->
+  <span>Sign in to your Account</span>
+</div>
+</div>
+<div class="account-data"> 
+<div id="target"></div><!-- text fields -->
+<form id="login">
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+  <input class="mdl-textfield__input" type="text" id="id-email" name="email" value="nkayabasi@hascevher.com.tr"/>
+  <label class="mdl-textfield__label" for="sample1">Enter your email</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+  <input class="mdl-textfield__input" type="password" id="id-password" name="password" value="123456"/>
+  <label class="mdl-textfield__label" for="sample2">Password</label>
+</div>
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary right" href="calendar.html">
+Login
+</button>
+</form>
+<a class="left" href="#">Forgot password?</a>
+
+<div class="clr"></div>
+</div>
+</div>
+</main>
+
+<script>
+  $('#login').submit(function(){
+  	var url = 'http://172.20.10.8:3000/verificador_de_password'
+
+  	var user = {
+            email: $("#id-email").val(),
+            password:$("#id-password").val()
+        }
+
+     $('#target').html('sending..');
+
+	 $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#target').html(data.notice);
+                if(data.active == true){
+                var inkuser = {'user': data.user};
+                var userInO = JSON.stringify(inkuser);
+                window.localStorage.setItem("loggedIn", 1);
+                window.localStorage.setItem("userId", data.user.id);
+                window.localStorage.setItem("userAccess", userInO);
+                window.localStorage.setItem("activeUser", data.active);
+                window.localStorage.setItem("avatar_mini", data.avatar_mini);
+                window.localStorage.setItem("avatar_large", data.avatar_large);
+                window.localStorage.setItem("cites", 0);
+                var userInOX = window.localStorage.getItem("userAccess");
+                setTimeout(function(){
+                loadView(JSON.parse(userInOX),'profile','load-in-body');
+                },1300);
+
+                setTimeout(function(){
+                loadView(JSON.parse(userInOX),'menu','load-menu');
+                },2300);
+                }else{
+                	alert('Intenta nuevamente');
+                }
+
+
+            },
+            data: user
+       });  
+	 return false;
+
+  	
+  });
+</script>

@@ -1,0 +1,29 @@
+{{reverse non_relative}}
+
+{{#each non_relative}}
+<div class="calendar-day">
+  <!-- day date -->
+  <div class="calendar-date">
+    <span>{{@index}}</span>
+    <span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+  </div>
+  <!-- day colored activity -->
+  <a id="get-to-{{@index}}" ><div class="calendar-activity teal mdl-shadow--1dp">
+    <!--  <a id="sa-success" class="mdl-button mdl-js-button"><i class="material-icons">close</i></a> -->
+    <span>{{contacto_nombre}}</span><br/>
+    <span>{{contacto_empresa}}</span>
+    <span class="calendar-hour">{{prettifyDate fecha_cita}}</span>
+  </div></div>
+  <script>
+    
+
+    $("#get-to-{{@index}}").click(function(){
+      var selected = "{{json this}}"
+      var extract =  JSON.parse(selected.replace(/&quot;/g,'"'));
+      loadView(extract,'meeting','load-in-body');
+    });
+  </script>
+  <div class="clr"></div>
+</a>
+{{/each}}
+

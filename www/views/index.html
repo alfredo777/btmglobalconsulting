@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Global BMT Consulting</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/css/animsition.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">  
+    <link rel="stylesheet" href="css/swipebox.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+
+  <body>
+    <div class="animsition">
+      <!-- Header -->
+     <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+       
+        <!-- Top-right Dropdown Menu -->
+        <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="top-header-menu">
+          <a href="login.html" class="animsition-link"><span class="mdl-menu__item">Login</span></a>
+          <a href="messages.html" class="animsition-link"><span class="mdl-menu__item mdl-badge" data-badge="4">Notifications</span></a>
+          <a href="calendar.html" class="animsition-link"><span class="mdl-menu__item">Calendar</span></a>
+          <a href="settings.html" class="animsition-link"><span class="mdl-menu__item">Settings</span></a>
+        </div>
+        <!-- Sidebar -->
+        <div class="mdl-layout__drawer">
+          <!-- Top -->
+          <div class="mdl-card mdl-shadow--2dp mdl-color--primary mdl-color-text--blue-grey-50 drawer-profile">
+            <div class="mdl-card__title user">
+              <img src="img/user.jpg" alt="" />
+              <span class="user-name">Jonathan Lee</span>
+              <span class="user-mail">jonathan@email.com</span>
+              <button id="user-menu" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">arrow_drop_down</i>
+              </button>
+            </div>
+            <!-- Top-right User -->
+            <div class="mdl-card__menu">
+              <img class="sub-user" src="img/sub-user.jpg" alt="" />
+            </div>
+          </div>
+          <!-- Dropdown Menu -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-menu">
+            <li class="mdl-menu__item">hello@email.com</li>
+            <li class="mdl-menu__item">info@domain.net</li>
+            <li class="mdl-menu__item">Add another account...</li>
+          </ul>
+          <!-- Main Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link animsition-link" href="index.html"><i class="material-icons">home</i><span>Home</span></a>
+            <a class="mdl-navigation__link animsition-link" href="profile.html"><i class="material-icons">account_circle</i><span>Profile</span></a>
+            <a class="mdl-navigation__link animsition-link" href="calendar.html"><i class="material-icons">today</i><span>Calendar</span></a>
+            <a class="mdl-navigation__link animsition-link" href="settings.html"><i class="material-icons">settings</i><span>Settings</span></a>
+          </nav>
+        </div>
+
+        <!-- Page Content -->
+        <a href="login.html">  <main class="mdl-layout__content launch valign-wrapper"> <!-- vertical align container -->
+          <div class="valign"> <!-- vertical align element -->
+           <!--  <h2>GRAVITY</h2>
+            <span>- mobile -</span> -->
+          </div>
+        </main></a>
+        
+      </div>
+    </div>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
+    <script src="js/sweetalert.min.js"></script> 
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="js/jquery.swipebox.min.js"></script>
+    <script src="js/function.js"></script>
+  </body>
+</html>

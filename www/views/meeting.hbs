@@ -1,0 +1,81 @@
+<div class="calendar-activity teal" style="width: 100%; margin-bottom: 0px;">
+  <!--  <a id="sa-success" class="mdl-button mdl-js-button"><i class="material-icons">close</i></a> -->
+  <center> 
+  <span><h3>Meeting</h3></span>
+  <span class="calendar-hour"><h6>{{prettifyDate fecha_cita}}</h6></span>
+  </center>
+</div>
+<div class="clr"></div>
+<main class="mdl-layout__content">
+<div class="mdl-card mdl-shadow--2dp  drawer-profile">
+  <div class="mdl-card__title user" style="background-color: #4DB6AC; height: 105px; padding-top: 0px; overflow:auto;">
+    <p style="width: 95%; float: left; padding-left: 20px; font-size: 12px; line-height: 15px; text-align: justify;">
+
+    <h4>{{contacto_empresa}}:</h4>
+    {{#if instrucciones}}
+    <h5>Instructions:</h5>{{instrucciones}}<br/>
+    {{/if}}
+    {{#if descripccion}}
+    <h5>Description:</h5>{{descripccion}}</p>
+    {{/if}}
+  </div>
+  <div class="mdl-card__title user" style="background-color: #f0f0f0; height: 105px; padding-top: 15px; ">
+    <span class="user-name" style="float: left; color: rgba(0,0,0,.54); padding: 15px; font-size: 20px; ">{{contacto_nombre}}</span>
+  </div>
+  <!-- Top-right User -->
+</div>
+<div class="contact-about" style="margin-top: -50px; width: 110%; margin-left: -30px;">
+  <div class="mdl-card ">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" href="tel:{{contacto_telefono}}"><i class="material-icons">call</i></a>
+        <span>Call</span>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" href="sms://{{contacto_telefono}}"><i class="material-icons">account_circle</i></a>
+        <span>Linked In</span>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" href="mailto://{{contacto_mail}}"><i class="material-icons">mail</i></a>
+        <span>Mail</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
+  <a href="img/maps.jpg" class="swipebox" title="Material Design"><img src="img/maps.jpg" alt=""></a>
+</div>
+<hr>
+<div class="mdl-cell mdl-cell--12-col">
+  <a href="img/6.jpg" class="swipebox" title="Material Design"><img src="img/6.jpg" alt=""></a>
+</div>
+<div class="chat">
+  <ul>
+    <li class="message-right"> <!-- right message -->
+    <img src="img/user.jpg" alt="" class="minilogo mdl-shadow--2dp"> <!-- user -->
+    <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue nunc ac vulputate sollicitudin. Aliquam in sem tincidunt arcu dignissim hendrerit eget vitae mi.</p> <!-- message text -->
+      <span>12 min</span> <!-- message time -->
+    </div>
+  </li>
+  
+</ul>
+</div>
+<!-- write message fixed bottom -->
+<div class="write-message mdl-shadow--2dp">
+<form action="#">
+  <button class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">attach_file</i>
+  </button>
+  <div class="mdl-textfield mdl-js-textfield textfield-demo">
+    <input class="mdl-textfield__input" type="text" id="sample3" />
+    <label class="mdl-textfield__label" for="sample3">Type comment...</label>
+  </div>
+</form>
+
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored send">
+<i class="material-icons">send</i>
+</button>
+</div>
+</main>
+</div>
