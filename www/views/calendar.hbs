@@ -6,7 +6,7 @@
 
 <script>
    if(window.localStorage.getItem("cites") == 0){
-   var url = 'http://172.20.10.8:3000/agenda_usuario_json?Mail='+"{{user.email}}";
+   var url = 'https://btmconsulting-api.herokuapp.com/agenda_usuario_json?Mail='+"{{user.email}}";
    $.ajax({
             url: url,
             type: 'get',
