@@ -51,3 +51,68 @@ Handlebars.registerHelper("prettifyDate", function(date) {
     var parsedDate = year +"-"+ month +"-"+ day + "   At " + hour + "  hour(s)" ;
     return parsedDate;
 });
+
+
+Handlebars.registerHelper("parsedPretyDate", function(date) {
+  var string_date = date;
+  var string_date = string_date.split("T");
+  var hour = string_date[1].split(':',2);
+  var date_hiper_parsed = string_date[0].split('-',3);
+  var year = date_hiper_parsed[0];
+  var mont = date_hiper_parsed[1];
+  var day = date_hiper_parsed[2];
+  var time = hour[0] + ":" + hour[1];
+  var month = new Array();
+  month[1] = "January";
+  month[2] = "February";
+  month[3] = "March";
+  month[4] = "April";
+  month[5] = "May";
+  month[6] = "June";
+  month[7] = "July";
+  month[8] = "August";
+  month[9] = "September";
+  month[10] = "October";
+  month[11] = "November";
+  month[12] = "December";
+  string_date = year +' '+ month[mont] +' '+ day + ' At ' + time;
+  return string_date;
+});
+
+Handlebars.registerHelper("parsedPretyHour", function(date) {
+  var string_date = date;
+  var string_date = string_date.split("T");
+  var hour = string_date[1].split(':',2);
+  console.log("Hora recortada --->" + hour[0] + ":" + hour[1]);
+  var time = hour[0] + ":" + hour[1];
+  return time;
+});
+
+
+Handlebars.registerHelper("compareDate", function(date){
+  var dateaccess;
+  var string_date = date;
+  var string_date = string_date.split("T");
+  var hour = string_date[1].split(':',2);
+  var date_hiper_parsed = string_date[0].split('-',3);
+  var year = date_hiper_parsed[0];
+  var month = date_hiper_parsed[1];
+  var day = date_hiper_parsed[2];
+  
+  var datex = year + "-" + month + "-" + day;
+
+  var parse = new Date();
+  var day2 = parse.getDate();
+  var year2 = parse.getFullYear();
+  var month2 = parse.getMonth();
+  var dateclass = year2 + "-" + month2 + "-" + day2;
+  console.log(dateclass);
+
+  if(dateclass == datex){
+    dateaccess = 'cyan today-s';
+  } else {
+    dateaccess = 'green no-today';
+  }
+  return dateaccess;
+});
+

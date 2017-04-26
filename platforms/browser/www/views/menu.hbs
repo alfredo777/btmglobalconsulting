@@ -4,7 +4,7 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Right Menu -->
       <button class="mdl-button mdl-js-button mdl-button--icon">
-      <a href="edit-profile.html" style="color: #fff!important;"><i class="material-icons">edit</i></a>
+      <a href="#" onclick="edit()" style="color: #fff!important;"><i class="material-icons">edit</i></a>
       </button>
       <button class="mdl-button mdl-js-button mdl-button--icon">
       <a href="notifications.html" style="color: #fff!important;"> <i class="material-icons">notifications</i></a>
@@ -52,6 +52,11 @@
   function calendar(){
 
   loadView(userx,'calendar','load-in-body');
+  }
+
+  function edit(){
+
+  loadView(userx,'edit_profile','load-in-body');
   }
 
   function exit(){
