@@ -20,7 +20,7 @@
         <span>Linked In</span>
       </div>
       <div class="mdl-cell mdl-cell--6-col">
-        <a href="mailto:{{{user.email}}}?Subject=From&BTMconsulting" data-rel='external'>
+        <a onclick="window.open('mailto://{{{user.email}}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')" data-rel='external'>
         <i class="material-icons">mail</i></a>
         <span>Mail</span>
       </div>

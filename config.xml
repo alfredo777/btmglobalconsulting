@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>btmglobalconsulting</name>
+<widget id="btmconsultin.heroku.com" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>BTM Consulting Calendar</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+       App de  BTM Consulting
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        Rockstars MX
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
@@ -101,27 +101,24 @@
         <splash height="1920" platform="windows" src="www/res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
     </platform>
     <access origin="*" />
-    <access origin="tel:*" launch-external="yes"/>
-    <access origin="geo:*" launch-external="yes"/>
-    <access origin="mailto:*" launch-external="yes"/>
-    <access origin="sms:*" launch-external="yes"/>
-    <access origin="market:*" launch-external="yes"/>
+    <access origin="facebook.com" subdomains="true" /> 
+    <access origin="*.fbcdn.net" /> 
+    <access origin="*.akamaihd.net" /> 
+    <access origin="*://*.googleapis.com/*" subdomains="true" />
+    <access origin="*://*.gstatic.com/*" subdomains="true" />
+    <access origin="*://*.google.com/*" subdomains="true" /> 
+    <access origin="*://*.googleusercontent.com/*" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
+    <allow-intent href="mailto://*" />
+    <allow-intent href="geo://*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <allow-intent href="mailto:*" />
-        <allow-intent href="tel:*" />
-
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
-        <allow-intent href="mailto:*" />
-        <allow-intent href="tel:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
 </widget>

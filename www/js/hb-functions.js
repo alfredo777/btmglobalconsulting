@@ -88,6 +88,52 @@ Handlebars.registerHelper("parsedPretyHour", function(date) {
   return time;
 });
 
+Handlebars.registerHelper("parsedPretyDateDayMonth", function(date) {
+  var string_date = date;
+  var string_date = string_date.split("T");
+  var hour = string_date[1].split(':',2);
+  var date_hiper_parsed = string_date[0].split('-',3);
+  var year = date_hiper_parsed[0];
+  var mont = date_hiper_parsed[1];
+  var day = date_hiper_parsed[2];
+  var time = hour[0] + ":" + hour[1];
+  var month = new Array();
+  month[1] = "Ja";
+  month[2] = "Feb";
+  month[3] = "Mar";
+  month[4] = "Apr";
+  month[5] = "May";
+  month[6] = "Jun";
+  month[7] = "Jul";
+  month[8] = "Aug";
+  month[9] = "Sept";
+  month[10] = "Oct";
+  month[11] = "Nov";
+  month[12] = "Dec";
+  string_date = '<div style="margin-left:-15px;"><br/><center>' + day +'<br/>'+ month[mont] +'</center></div>';
+  return string_date;
+});
+
+
+Handlebars.registerHelper("staticMapByGoogleData", function(place1, place2) {
+
+var key = "AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU";
+var place = place1+"+"+place2;
+var urlGoogle = "https://maps.googleapis.com/maps/api/staticmap?visible="+place+"maptype=roadmap&zoom=16&size=600x400&markers=color:blue&key="+key;
+console.log(urlGoogle);
+return urlGoogle;
+
+});
+
+
+Handlebars.registerHelper("staticLinkByGoogleData", function(place1, place2) {
+  var place = htmlEntities(place1) +"+"+ htmlEntities(place2);
+  place = place.split(' ').join('+')
+  return place;
+});
+
+
+
 
 Handlebars.registerHelper("compareDate", function(date){
   var dateaccess;
@@ -115,4 +161,11 @@ Handlebars.registerHelper("compareDate", function(date){
   }
   return dateaccess;
 });
+
+
+function htmlEntities(str) {
+    return String(str).replace('&amp;','').replace('&lt;','').replace('&gt;','').replace('&quot;','').replace('undefined','');
+}
+
+
 

@@ -28,22 +28,47 @@
   <div class="mdl-card ">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--4-col">
-        <a class="no-accent-color" href="tel:{{contacto_telefono}}"><i class="material-icons">call</i></a>
+        <a class="no-accent-color" id="call"><i class="material-icons">call</i></a>
         <span>Call</span>
+
+        <script>
+            $('#call').click(function () {
+                var phone = "{{contacto_telefono}}".replace(/\D/g,"");
+                window.open("tel:"+phone, '_system');
+                return false;
+            });
+        </script>
       </div>
       <div class="mdl-cell mdl-cell--4-col">
-        <a class="no-accent-color" href="sms://{{contacto_telefono}}"><i class="material-icons">account_circle</i></a>
-        <span>Linked In</span>
+        <a class="no-accent-color" id="sms"><i class="fa fa-commenting-o" aria-hidden="true"></i>
+        </a>
+        <span>SMS</span>
+
+        <script>
+            $('#sms').click(function () {
+                var phone = "{{contacto_telefono}}".replace(/\D/g,"");
+                window.open("sms:"+phone+"&body=Hi,%20I'm%20at%20the%20meeting%20place%20already.", '_system');
+                return false;
+            });
+        </script>
       </div>
       <div class="mdl-cell mdl-cell--4-col">
-        <a class="no-accent-color" href="mailto://{{contacto_mail}}"><i class="material-icons">mail</i></a>
+        <a class="no-accent-color" onclick="window.open('mailto://{{contacto_mail}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')"><i class="material-icons">mail</i></a>
         <span>Mail</span>
       </div>
     </div>
   </div>
 </div>
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
 <div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
-  <a href="img/maps.jpg" class="swipebox" title="Material Design"><img src="img/maps.jpg" alt=""></a>
+  <a href="https://www.google.com/maps/search/{{staticLinkByGoogleData lugar_cita lugar_cita2}}">
+   <img src="{{staticMapByGoogleData lugar_cita lugar_cita2}}" alt="">
+
+   <img src="http://maps.googleapis.com/maps/api/staticmap?visible=Sheraton Maria Isabel Hotel &amp; Towers Salon Bugambilia+undefinedmaptype=roadmap&zoom=16&size=600x400&markers=color:blue&key=AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU" alt="">
+  </a>
 </div>
 <hr>
 <div class="mdl-cell mdl-cell--12-col">
