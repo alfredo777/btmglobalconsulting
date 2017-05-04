@@ -56,14 +56,22 @@
         <a class="no-accent-color" onclick="window.open('mailto://{{contacto_mail}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')"><i class="material-icons">mail</i></a>
         <span>Mail</span>
       </div>
+      
     </div>
   </div>
 </div>
 
-<div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
-  <a href="https://www.google.com/maps/search/{{staticLinkByGoogleData lugar_cita lugar_cita2}}">
-  </a>
+<h4>
+<center>
+<a class="no-accent-color" onclick="window.open('https://www.google.com/maps/search/{{staticLinkByGoogleData lugar_cita lugar_cita2}}', '_system')">
+Get to cite place <i class="fa fa-map-marker" aria-hidden="true"></i>
+<span>Map</span> <i class="fa fa-map" aria-hidden="true"></i>
 
+</a>
+</center>
+</h4>
+<!--<div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
+  
  
   <img src="https://maps.googleapis.com/maps/api/staticmap?visible=Sheraton%20Maria%20Isabel%20Hotel%20&amp;%20Towers%20Salon%20Bugambilia+undefinedmaptype=roadmap&zoom=16&size=600x400&markers=color:blue&format=pnge&key=AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU" alt="" id="newImage" />   
 
@@ -75,16 +83,22 @@
 
   </script>
    
-</div>
+</div>-->
 <hr>
 <!--<div class="mdl-cell mdl-cell--12-col">
   <a href="img/6.jpg" class="swipebox" title="Material Design"><img src="img/6.jpg" alt=""></a>
 </div>-->
 <div class="chat">
-<ul  id="add_coment">
+<ul id="addcomment">
  {{#each comments}}
-   <li class="message-right"> <!-- right message -->
-    <img src="img/user.jpg" alt="" class="minilogo mdl-shadow--2dp"> <!-- user -->
+   <li class="message-right" id="comment-{{id}}"> <!-- right message -->
+    <img src="" alt="" class="minilogo mdl-shadow--2dp"> <!-- user -->
+    <script>
+    $(document).ready(function(){
+      var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+      $('.minilogo').attr('src', img_mini);
+    });
+    </script>
     <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white"> 
       <p>{{coment_text}}</p> <!-- message text -->
       {{#if attachment}}
@@ -96,12 +110,14 @@
       </script>
       {{/if}}
 
-      <span>{{parsedPretyDate created_at}}</span> <!-- message time -->
+      <span>{{parsedPretyDate2 created_at}}</span> 
+      <span><a onclick="destroyComment({{id}})"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
     </div>
     </li>
  {{/each}}
 
 </ul>
+
 <br/><br/><br/><br/><br/><br/>
 </div>
 <!-- write message fixed bottom -->
@@ -147,7 +163,7 @@
 
     var formDataSerialized = $(this).serialize();
       console.log(formDataSerialized);
-    var url = "http://192.168.1.75:3000/agregar_comentario";
+    var url = "http://btmconsulting-api.herokuapp.com/agregar_comentario";
     $.ajax({
       url: url,
       type: 'post',
@@ -157,10 +173,42 @@
       processData: false,
       data: formData,
       success: function (data) {
-        loadView(JSON.stringify(data),'comment','add_coment');
+        datas = JSON.stringify(data);
+        divloadtpl = 'addcomment';
+        getTemplate('comment', data, function(output, err) {
+          $('#'+divloadtpl).addClass('animated fadeOut');
+          setTimeout(function(){
+            $("#"+divloadtpl).append(output);
+            $('#'+divloadtpl).addClass('animated slideInDown');
+          }, 200);
+        });  
       }
              
     });  
     return false;
   });
+
+  function destroyComment(id){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+    if (confirm('Are you sure to destroy this comment?')) {
+      var url = "http://btmconsulting-api.herokuapp.com/eliminar_comentario?id="+id;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+          $('#comment-'+id).hide();
+        }
+               
+      }); 
+    } else {
+      console.log('Not eliminate')
+    }
+  }
 </script>

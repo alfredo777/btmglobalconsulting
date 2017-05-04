@@ -6,7 +6,7 @@
   </div>
 </div>
 <center>
-<h3><a onclick="calendar()">Calendar <i class="fa fa-calendar" aria-hidden="true"></i></a></h3>
+<h3><a onclick="calendar()" class="no-accent-color">Calendar <i class="fa fa-calendar" aria-hidden="true"></i></a></h3>
 </center>
 <div class="contact-about">
   <div class="mdl-card mdl-shadow--2dp">
@@ -21,7 +21,7 @@
         <span>Linked In</span>
       </div>
       <div class="mdl-cell mdl-cell--6-col">
-        <a onclick="window.open('mailto://{{{user.email}}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')" data-rel='external'>
+        <a class="no-accent-color" onclick="window.open('mailto://{{{user.email}}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')" data-rel='external'>
         <i class="material-icons">mail</i></a>
         <span>Mail</span>
       </div>
@@ -34,4 +34,7 @@
       var img_large =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_large");
       $('#avatarlargeuser').attr('src', img_large);
   </script>
+
+
+  
 

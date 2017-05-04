@@ -18,11 +18,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
-
   </head>
-
+  <div id="line" style="float:right; width: 30px; font-size: 50px; position: absolute;"></div>
   <body>
+    <div id="ajax" style="background:#e1e1e1; display: none; ">
+      <center><div style="width: 45px; z-index: 1;"><img src="img/loading.png" alt=""></div></center>
+    </div>
+  
     <div class="animsition" >
       <!-- Header -->
         <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button" >
@@ -89,6 +91,29 @@
         loadView('','login','load-in-body');
     },3000);
     }
+</script>
+<script>
+
+   $.ajaxSetup({
+    beforeSend: function() {
+        $('#ajax').slideToggle('slow');
+    },
+    complete: function() {
+        setTimeout(function(){
+          $('#ajax').slideToggle('slow');
+        },600);
+    }
+   });
+</script>
+
+ <script type="text/javascript">
+    document.addEventListener("online", function(){ $('#line').html('<i class="fa fa-wifi" aria-hidden="true" style="color:#58ACFA"></i>');
+      window.localStorage.setItem("networkXX", "true");
+    }, false);
+    document.addEventListener("offline", function(){ $('#line').html('<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:#F7FE2E;"></i>') 
+    window.localStorage.setItem("networkXX", "false");
+  }, false);
+    /*dropTable("formularios");*/
 </script>
 
 
