@@ -60,47 +60,107 @@
   </div>
 </div>
 
-
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
 <div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
   <a href="https://www.google.com/maps/search/{{staticLinkByGoogleData lugar_cita lugar_cita2}}">
-   <img src="{{staticMapByGoogleData lugar_cita lugar_cita2}}" alt="">
-
-   <img src="http://maps.googleapis.com/maps/api/staticmap?visible=Sheraton Maria Isabel Hotel &amp; Towers Salon Bugambilia+undefinedmaptype=roadmap&zoom=16&size=600x400&markers=color:blue&key=AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU" alt="">
   </a>
+
+ 
+  <img src="https://maps.googleapis.com/maps/api/staticmap?visible=Sheraton%20Maria%20Isabel%20Hotel%20&amp;%20Towers%20Salon%20Bugambilia+undefinedmaptype=roadmap&zoom=16&size=600x400&markers=color:blue&format=pnge&key=AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU" alt="" id="newImage" />   
+
+
+  <script>
+
+ 
+  document.getElementById("newImage").src =  "{{staticMapByGoogleData lugar_cita lugar_cita2}}";
+
+  </script>
+   
 </div>
 <hr>
-<div class="mdl-cell mdl-cell--12-col">
+<!--<div class="mdl-cell mdl-cell--12-col">
   <a href="img/6.jpg" class="swipebox" title="Material Design"><img src="img/6.jpg" alt=""></a>
-</div>
+</div>-->
 <div class="chat">
-  <ul>
-    <li class="message-right"> <!-- right message -->
+<ul  id="add_coment">
+ {{#each comments}}
+   <li class="message-right"> <!-- right message -->
     <img src="img/user.jpg" alt="" class="minilogo mdl-shadow--2dp"> <!-- user -->
-    <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue nunc ac vulputate sollicitudin. Aliquam in sem tincidunt arcu dignissim hendrerit eget vitae mi.</p> <!-- message text -->
-      <span>12 min</span> <!-- message time -->
+    <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white"> 
+      <p>{{coment_text}}</p> <!-- message text -->
+      {{#if attachment}}
+      <a id="img{{id}}" >Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
+      <script>
+         $('#img{{id}}').click(function () {
+                window.open("{{attachment}}", '_system');
+          });
+      </script>
+      {{/if}}
+
+      <span>{{parsedPretyDate created_at}}</span> <!-- message time -->
     </div>
-  </li>
-  
+    </li>
+ {{/each}}
+
 </ul>
+<br/><br/><br/><br/><br/><br/>
 </div>
 <!-- write message fixed bottom -->
 <div class="write-message mdl-shadow--2dp">
-<form action="#">
-  <button class="mdl-button mdl-js-button mdl-button--icon">
+<form id="send_coment" enctype="multipart/form-data" >
+  <a class="mdl-button mdl-js-button mdl-button--icon" id="open_attachment" href="#">
   <i class="material-icons">attach_file</i>
-  </button>
+  </a>
   <div class="mdl-textfield mdl-js-textfield textfield-demo">
-    <input class="mdl-textfield__input" type="text" id="sample3" />
-    <label class="mdl-textfield__label" for="sample3">Type comment...</label>
+    <div style="display:none;">
+    <input type="text" name="id" value="{{id}}" id="id">
+    <input type="text" name="user_app_id" value="" id="user_app_id">
+    <input type="file" name="attachment" id="attachment">
+
+    <script>
+     $('#user_app_id').val(window.localStorage.getItem("userId"));
+      
+      $('#open_attachment').click(function(){
+        $('#attachment').trigger("click");
+      });
+
+    </script>
+     
+    </div>
+    <input class="mdl-textfield__input" type="text" id="coment_text" name="coment_text"/>
+    <label class="mdl-textfield__label" for="coment_text">Type comment...</label>
   </div>
+
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored send">
+  <i class="material-icons">send</i>
+  </button>
 </form>
 
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored send">
-<i class="material-icons">send</i>
-</button>
 </div>
 </main>
 </div>
+
+
+<script>
+  $('#send_coment').submit(function(){
+    var formData = new FormData($(this)[0]);
+      console.log(formData);
+
+    var formDataSerialized = $(this).serialize();
+      console.log(formDataSerialized);
+    var url = "http://192.168.1.75:3000/agregar_comentario";
+    $.ajax({
+      url: url,
+      type: 'post',
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function (data) {
+        loadView(JSON.stringify(data),'comment','add_coment');
+      }
+             
+    });  
+    return false;
+  });
+</script>

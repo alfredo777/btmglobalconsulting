@@ -178,9 +178,10 @@ function uploadPhoto(imageURI) {
 }
 
 function sendData(){
-  	//var url = "http://btmconsulting-api.herokuapp.com/actualizar_usuario";
-  	
-  	var url = "http://192.168.1.75:3000/actualizar_usuario";
+  	var url = "http://btmconsulting-api.herokuapp.com/actualizar_usuario";
+  	//var url = "http://192.168.1.75:3000/actualizar_usuario";
+
+  	console.log(url);
     var data = {
         first_name: $("#first_name").val(),
         last_name:$("#last_name").val(),

@@ -1,0 +1,13 @@
+<li class="message-right"> 
+<img src="img/user.jpg" alt="" class="minilogo mdl-shadow--2dp"> 
+<div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white">
+	<p>{{comment.coment_text}}</p> 
+	<a id="img{{comment.id}}" >Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
+	<script>
+	$('#img{{comment.id}}').click(function () {
+	window.open("{{datafile}}", '_system');
+	});
+	</script>
+	<span>{{parsedPretyDate comment.created_at}}</span> 
+</div>
+</li>

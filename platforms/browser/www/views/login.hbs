@@ -33,6 +33,7 @@ Login
 <script>
   $('#login').submit(function(){
   	var url = 'http://btmconsulting-api.herokuapp.com/verificador_de_password'
+    //var url = 'http://192.168.1.75:3000/verificador_de_password'
 
   	var user = {
             email: $("#id-email").val(),
@@ -47,7 +48,9 @@ Login
             dataType: "jsonp",
             jsonp: "callback",
             success: function (data) {
+                console.log(data.notice);
                 $('#target').html(data.notice);
+
                 if(data.active == true){
                 var inkuser = {'user': data.user};
                 var userInO = JSON.stringify(inkuser);

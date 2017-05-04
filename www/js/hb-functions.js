@@ -117,9 +117,9 @@ Handlebars.registerHelper("parsedPretyDateDayMonth", function(date) {
 
 Handlebars.registerHelper("staticMapByGoogleData", function(place1, place2) {
 
-var key = "AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU";
+var key = "AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU"; 
 var place = place1+"+"+place2;
-var urlGoogle = "https://maps.googleapis.com/maps/api/staticmap?visible="+place+"maptype=roadmap&zoom=16&size=600x400&markers=color:blue&key="+key;
+var urlGoogle = "https://maps.googleapis.com/maps/api/staticmap?visible="+place+"maptype=roadmap&zoom=16&size=600x400&markers=color:blue&format=pnge&key="+key;
 console.log(urlGoogle);
 return urlGoogle;
 

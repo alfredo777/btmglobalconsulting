@@ -2,7 +2,7 @@
 
 
 <main class="mdl-layout__content">
-<div style="position:absolute; width: 100%; height: 50px; padding:20px; background: #000; color:#fff; font-size:35px; "><center>Calendario</center></div><br/><br/><br/><br/><br/>
+<div id="calendarup" style="position:absolute; width: 100%; height: 50px; padding:20px; background: #000; color:#fff; font-size:35px; "><center>Calendario</center></div><br/><br/><br/><br/><br/>
 
 <script>
    if(window.localStorage.getItem("cites") == 0){
@@ -33,3 +33,23 @@
 
 
 </main>
+
+<script>
+$('#calendarup').click(function(){
+  $('#append-calendar').html("<center>Loading and Update ...</center>");
+  //var url = "http://btmconsulting-api.herokuapp.com/agenda_usuario_json?Mail="+"{{user.email}}";
+  var url = "http://192.168.1.75:3000/agenda_usuario_json?Mail="+"{{user.email}}";
+  $.ajax({
+    url: url,
+    type: 'get',
+    dataType: 'json',
+      success: function (data) {
+        dataz = JSON.stringify(data);
+        window.localStorage.setItem("cites", dataz);
+        var cites = window.localStorage.getItem("cites");
+        loadView(JSON.parse(cites),'calendar-single-view','append-calendar');
+      }
+  });
+});
+</script>
+
