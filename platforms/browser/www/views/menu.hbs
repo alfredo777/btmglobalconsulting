@@ -48,15 +48,20 @@
   var userx = JSON.parse(datax);
   function gethome(){
   loadView(userx,'profile','load-in-body');
+  $('.mdl-layout__drawer').removeClass('is-visible');
   }
   function calendar(){
 
   loadView(userx,'calendar','load-in-body');
+    $('.mdl-layout__drawer').removeClass('is-visible');
+
   }
 
   function edit(){
 
   loadView(userx,'edit_profile','load-in-body');
+    $('.mdl-layout__drawer').removeClass('is-visible');
+
   }
 
   function exit(){
