@@ -119,7 +119,6 @@ Handlebars.registerHelper("parsedPretyHour", function(date) {
   var string_date = date;
   var string_date = string_date.split("T");
   var hour = string_date[1].split(':',2);
-  console.log("Hora recortada --->" + hour[0] + ":" + hour[1]);
   var time = hour[0] + ":" + hour[1];
   return time;
 });
@@ -188,7 +187,6 @@ Handlebars.registerHelper("compareDate", function(date){
   var year2 = parse.getFullYear();
   var month2 = parse.getMonth();
   var dateclass = year2 + "-" + month2 + "-" + day2;
-  console.log(dateclass);
 
   if(dateclass == datex){
     dateaccess = 'cyan today-s';
