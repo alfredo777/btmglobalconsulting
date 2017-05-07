@@ -24,7 +24,16 @@
   </div>
   <!-- Top-right User -->
 </div>
-<div class="contact-about" style="margin-top: -50px; width: 110%; margin-left: -30px;">
+<div>
+<center>
+<h4>Rate the cite</h4>
+<div style="width:100%;">
+<div id="rating_cite" class="c-rating" style="width:30%;">
+</div>
+</div>
+</center>
+</div>
+<div class="contact-about" style="margin-top: 10px; width: 110%; margin-left: -30px;">
   <div class="mdl-card ">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--4-col">
@@ -70,24 +79,8 @@ Get to cite place <i class="fa fa-map-marker" aria-hidden="true"></i>
 </a>
 </center>
 </h4>
-<!--<div class="mdl-cell mdl-cell--12-col" style="margin-top: -30px; width: 100%; padding: 0px; margin-left: 0px;">
-  
- 
-  <img src="https://maps.googleapis.com/maps/api/staticmap?visible=Sheraton%20Maria%20Isabel%20Hotel%20&amp;%20Towers%20Salon%20Bugambilia+undefinedmaptype=roadmap&zoom=16&size=600x400&markers=color:blue&format=pnge&key=AIzaSyDSMHCossdNQkJm9YJpw8-PQyWSSLHMiLU" alt="" id="newImage" />   
-
-
-  <script>
-
- 
-  document.getElementById("newImage").src =  "{{staticMapByGoogleData lugar_cita lugar_cita2}}";
-
-  </script>
-   
-</div>-->
 <hr>
-<!--<div class="mdl-cell mdl-cell--12-col">
-  <a href="img/6.jpg" class="swipebox" title="Material Design"><img src="img/6.jpg" alt=""></a>
-</div>-->
+
 <div class="chat">
 <ul id="addcomment">
  {{#each comments}}
@@ -211,4 +204,51 @@ Get to cite place <i class="fa fa-map-marker" aria-hidden="true"></i>
       console.log('Not eliminate')
     }
   }
+  
+
+  $(document).ready(function(){
+  // target element
+  var rate_default = "{{rating}}";
+  console.log("<<<<<<<<<<<<<<"+rate_default);
+
+  var el = document.querySelector('#rating_cite');
+
+  // current rating, or initial rating
+  var currentRating = 0;
+
+  // max rating, i.e. number of stars you want
+  var maxRating= 5;
+
+  // callback to run after setting the rating
+  var callback = function(rating) { sendRate(rating); };
+
+  // rating instance
+  var myRating = rating(el, currentRating, maxRating, callback);
+
+  myRating.setRating(rate_default, true);
+  });
+
+
+  function sendRate(rating){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+      var url = "http://btmconsulting-api.herokuapp.com/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      //var url ="http://192.168.1.75:3000/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+        }
+               
+      }); 
+  }
+  
+
+
 </script>

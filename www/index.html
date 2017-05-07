@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/rating.min.css">
   </head>
   <div id="line" style="float:right; width: 30px; font-size: 50px; position: absolute;"></div>
   <body>
@@ -63,6 +64,8 @@
     <script src="js/function.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/hb-functions.js"></script>
+    <script src="js/rating.min.js"></script>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
@@ -107,11 +110,11 @@
 </script>
 
  <script type="text/javascript">
-    document.addEventListener("online", function(){ $('#line').html('<i class="fa fa-wifi" aria-hidden="true" style="color:#58ACFA"></i>');
+    document.addEventListener("online", function(){ 
       window.localStorage.setItem("networkXX", "true");
     }, false);
-    document.addEventListener("offline", function(){ $('#line').html('<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:#F7FE2E;"></i>') 
-    window.localStorage.setItem("networkXX", "false");
+    document.addEventListener("offline", function(){ 
+      window.localStorage.setItem("networkXX", "false");
   }, false);
     /*dropTable("formularios");*/
 </script>
