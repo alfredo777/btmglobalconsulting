@@ -939,7 +939,7 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
   float: right;
 }
 .chat ul li.message-right .message {
-  margin-right: 72px;
+/*  margin-right: 72px;*/
   margin-left: 0;
   color: rgba(0,0,0,.54);
 }
@@ -952,7 +952,7 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
   background-color: #ffffff;
 }
 .chat ul li.message-right .message:before {
-  content: "";
+  /*content: "";
   width: 0;
   height: 0px;
   position: absolute;
@@ -960,10 +960,10 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
   top: 0;
   margin-right: -10px;
   border-top: 12px solid #4CAF50;
-  border-right: 10px solid transparent;
+  border-right: 10px solid transparent;*/
 }
 .chat ul li.message-left .message:before {
-  content: "";
+ /* content: "";
   width: 0px;
   height: 0px;
   position: absolute;
@@ -971,7 +971,7 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
   top: 0;
   margin-left: -10px;
   border-top: 12px solid #fff;
-  border-left: 10px solid transparent;
+  border-left: 10px solid transparent;*/
 }
 .chat ul li:last-child {
 	margin-bottom: 72px;
@@ -1045,7 +1045,6 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
 -------------------------------------------------------------------*/
 .calendar-day {
 	width: calc(100% - 32px);
-	background: #fff;
 	padding: 16px 16px 0 16px;
 	border-bottom: 1px solid #eee;
 }
