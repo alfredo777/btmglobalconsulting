@@ -66,6 +66,10 @@
         },
         "cordova-plugin-googlemaps": {
             "PACKAGE_NAME": "btmconsultin.heroku.com"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "XXXXXXX",
+            "PACKAGE_NAME": "btmconsultin.heroku.com"
         }
     },
     "dependent_plugins": {
