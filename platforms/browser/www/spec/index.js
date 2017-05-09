@@ -43,6 +43,8 @@ describe('app', function() {
         });
     });
 
+    /*
+
     describe('receivedEvent', function() {
         beforeEach(function() {
             var el = document.getElementById('stage');
@@ -64,4 +66,5 @@ describe('app', function() {
             expect(displayStyle).toEqual('block');
         });
     });
+    */
 });
