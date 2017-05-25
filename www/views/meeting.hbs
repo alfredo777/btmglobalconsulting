@@ -165,6 +165,8 @@
       processData: false,
       data: formData,
       success: function (data) {
+        $('#send_coment')[0].reset();
+        alert("Comment success");
         datas = JSON.stringify(data);
         divloadtpl = 'addcomment';
         getTemplate('comment', data, function(output, err) {

@@ -9,12 +9,7 @@
   <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white">
     <p>{{ comment.coment_text}}</p> <!-- message text -->
     {{#if comment.attachment}}
-    <a id="img{{comment.id}}" >Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
-    <script>
-    $('#img{{comment.id}}').click(function () {
-    window.open("{{comment.attachment}}", '_system');
-    });
-    </script>
+    <a id="img{{comment.id}}" onclick="window.open('{{comment.attachment}}', '_system')">Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
     {{/if}}
     <span>{{parsedPretyDate2 comment.created_at}}</span>
     <span><a onclick="destroyComment({{comment.id}})"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
