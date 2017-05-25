@@ -70,6 +70,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "123456789",
             "PACKAGE_NAME": "com.gbmt.app"
+        },
+        "cordova-plugin-ios-camera-permissions": {
+            "PACKAGE_NAME": "com.gbmt.app"
         }
     },
     "dependent_plugins": {
