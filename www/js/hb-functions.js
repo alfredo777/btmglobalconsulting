@@ -84,7 +84,7 @@ Handlebars.registerHelper("parsedPretyDate", function(date) {
   month[10] = "October";
   month[11] = "November";
   month[12] = "December";
-  string_date = year +' '+ month[mont] +' '+ day + ' At ' + time;
+  string_date = year +' '+ month[parseInt(mont)] +' '+ day + ' At ' + time;
   return string_date;
 });
 
@@ -145,7 +145,7 @@ Handlebars.registerHelper("parsedPretyDateDayMonth", function(date) {
   month[10] = "Oct";
   month[11] = "Nov";
   month[12] = "Dec";
-  string_date = '<div style="margin-left:-15px;"><br/><center>' + day +'<br/>'+ month[mont] +'</center></div>';
+  string_date = '<div style="margin-left:-15px;"><br/><center>' + day +'<br/>'+ month[parseInt(mont)] +'</center></div>';
   return string_date;
 });
 

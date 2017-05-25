@@ -1,0 +1,41 @@
+<main class="mdl-layout__content mdl-color--white">
+<div id="calendarup" style="position: fixed; width: 100%; height: 20px; padding: 20px 0; background: #003462; color:#fff; font-size:25px; z-index: 100;"><a href="#" onclick="edit()" style="color: white!important; float: right; margin-top: 0px; margin-right:10px; z-index: 120;"> <i class="material-icons">edit</i></a></div>
+<div class="profile-page">
+  <img src="data:image/jpg;base64," alt="avatar usuario" id="avatarlargeuser">
+  <div class="contact-info">
+    <h3> {{user.first_name}} {{user.last_name}}  </h3>
+  </div>
+</div>
+<center>
+<h3><a onclick="calendar()" class="no-accent-color"> <i class="fa fa-calendar" aria-hidden="true"></i> Calendar</a></h3>
+</center>
+<div class="contact-about">
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-grid">
+      <!--<div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" href="tel:1234567890"><i class="material-icons">call</i></a>
+        <span>Call</span>
+      </div>-->
+      <div class="mdl-cell mdl-cell--6-col">
+        <a class="no-accent-color" href="{{user.linkedin}}"><i class="material-icons" data-rel='external'>account_circle</i></a>
+
+        <span>Linked In</span>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+        <a class="no-accent-color" onclick="window.open('mailto://{{{user.email}}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')" data-rel='external'>
+        <i class="material-icons">mail</i></a>
+        <span>Mail</span>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+  <script>
+      var img_large =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_large");
+      $('#avatarlargeuser').attr('src', img_large);
+  </script>
+
+
+  
+

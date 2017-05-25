@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Global BMT Consulting</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/css/animsition.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">  
+    <link rel="stylesheet" href="css/swipebox.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/rating.min.css">
+  </head>
+  <div id="line" style="float:right; width: 30px; font-size: 50px; position: absolute; "></div>
+  <body>
+    <div id="ajax" style="display: none; position: absolute; top: 50%; width: 100%;  text-align: center;">
+      <center><div style="width: 45px; z-index: 1;"><img src="img/loading.gif" alt=""></div></center>
+    </div>        
+    <div class="animsition" >
+      <!-- Header -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button" >
+  
+  <!-- Top-right Dropdown Menu -->
+        <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="top-header-menu" style="background: #fff;">
+          <a href="login.html" class="animsition-link"><span class="mdl-menu__item">Login</span></a>
+          <a href="messages.html" class="animsition-link"><span class="mdl-menu__item mdl-badge" data-badge="4">Notifications</span></a>
+          <a href="calendar.html" class="animsition-link"><span class="mdl-menu__item">Calendar</span></a>
+          <a href="settings.html" class="animsition-link"><span class="mdl-menu__item">Settings</span></a>
+        </div>
+        <!-- Sidebar -->
+        <div class="mdl-layout__drawer" >
+          <div id="load-menu">
+          <!-- Top -->
+          </div>
+        </div>
+         <!-- Page Content -->
+        <div  id="load-in-body">
+        <a href="login.html">  <main class="mdl-layout__content launch valign-wrapper"> <!-- vertical align container -->
+          <div class="valign"> <!-- vertical align element -->
+           <!--  <h2>GRAVITY</h2>
+            <span>- mobile -</span> -->
+          </div>
+        </main></a>
+        
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
+    <script src="js/sweetalert.min.js"></script> 
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="js/jquery.swipebox.min.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+    <script src="js/hb-functions.js"></script>
+    <script src="js/rating.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+        setTimeout(function(){
+          Main();
+
+        },1000);
+    </script>
+  </body>
+</html>
+<script  type="text/javascript" >
+    if(window.localStorage.getItem("loggedIn") == 1) {
+    var datax = window.localStorage.getItem("userAccess");
+    var userx = JSON.parse(datax);
+    setTimeout(function(){
+        loadView(userx,'profile','load-in-body');
+    },3000);
+
+    setTimeout(function(){
+        loadView(userx,'menu','load-menu');
+    },4000)
+    }
+    else
+    {
+    setTimeout(function(){
+        loadView('','login','load-in-body');
+    },3000);
+    }
+</script>
+<script>
+
+   $.ajaxSetup({
+    beforeSend: function() {
+        $('#ajax').slideToggle('slow');
+    },
+    complete: function() {
+        setTimeout(function(){
+          $('#ajax').slideToggle('slow');
+        },600);
+    }
+   });
+</script>
+
+ <script type="text/javascript">
+    document.addEventListener("online", function(){ 
+      window.localStorage.setItem("networkXX", "true");
+    }, false);
+    document.addEventListener("offline", function(){ 
+      window.localStorage.setItem("networkXX", "false");
+  }, false);
+    /*dropTable("formularios");*/
+</script>
+
+
