@@ -89,8 +89,8 @@
             "PACKAGE_NAME": "btmconsultin.heroku.com"
         },
         "phonegap-plugin-push": {
-            "SENDER_ID": "XXXXXXX",
-            "PACKAGE_NAME": "btmconsultin.heroku.com"
+            "SENDER_ID": "123456789",
+            "PACKAGE_NAME": "com.gbmt.app"
         }
     },
     "dependent_plugins": {},
@@ -746,6 +746,6 @@
         "cordova-plugin-vibration": "2.1.4",
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-googlemaps": "1.4.0",
-        "phonegap-plugin-push": "1.8.4"
+        "phonegap-plugin-push": "1.10.4"
     }
 }

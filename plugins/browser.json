@@ -68,8 +68,8 @@
             "PACKAGE_NAME": "btmconsultin.heroku.com"
         },
         "phonegap-plugin-push": {
-            "SENDER_ID": "XXXXXXX",
-            "PACKAGE_NAME": "btmconsultin.heroku.com"
+            "SENDER_ID": "123456789",
+            "PACKAGE_NAME": "com.gbmt.app"
         }
     },
     "dependent_plugins": {

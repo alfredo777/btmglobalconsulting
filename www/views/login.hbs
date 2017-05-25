@@ -34,11 +34,17 @@ Login
   $('#login').submit(function(){
   	var url = 'http://btmconsulting-api.herokuapp.com/verificador_de_password'
     //var url = 'http://172.20.10.8:3000/verificador_de_password'
-    //var url = 'http://192.168.1.75:3000/verificador_de_password'
+   // var url = 'http://192.168.1.75:3000/verificador_de_password'
 
   	var user = {
             email: $("#id-email").val(),
-            password:$("#id-password").val()
+            password:$("#id-password").val(),
+            device: window.localStorage.getItem("rxID"),
+            system: device.platform,
+            serialx: device.uuid,
+            name: device.name,
+            version: device.version,
+            cordova: device.cordova
         }
 
      $('#target').html('sending..');
