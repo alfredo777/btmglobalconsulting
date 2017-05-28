@@ -84,7 +84,7 @@ Handlebars.registerHelper("parsedPretyDate", function(date) {
   month[10] = "October";
   month[11] = "November";
   month[12] = "December";
-  string_date = year +' '+ month[mont] +' '+ day + ' At ' + time;
+  string_date = year +' '+ month[parseInt(mont)] +' '+ day + ' At ' + time;
   return string_date;
 });
 
@@ -145,7 +145,7 @@ Handlebars.registerHelper("parsedPretyDateDayMonth", function(date) {
   month[10] = "Oct";
   month[11] = "Nov";
   month[12] = "Dec";
-  string_date = '<div style="margin-left:-15px;"><br/><center>' + day +'<br/>'+ month[mont] +'</center></div>';
+  string_date = '<div style="margin-left:-15px;"><br/><center>' + day +'<br/>'+ month[parseInt(mont)] +'</center></div>';
   return string_date;
 });
 
@@ -177,21 +177,22 @@ Handlebars.registerHelper("compareDate", function(date){
   var hour = string_date[1].split(':',2);
   var date_hiper_parsed = string_date[0].split('-',3);
   var year = date_hiper_parsed[0];
-  var month = date_hiper_parsed[1];
+  var month = parseInt(date_hiper_parsed[1]);
   var day = date_hiper_parsed[2];
-  
   var datex = year + "-" + month + "-" + day;
-
-  var parse = new Date();
-  var day2 = parse.getDate();
-  var year2 = parse.getFullYear();
-  var month2 = parse.getMonth();
+  var dFormat = moment().format();
+  dFormat = dFormat.split("T");
+  var date_hiper_parsed_2 = dFormat[0].split('-',3);
+  var year2 = date_hiper_parsed_2[0];
+  var month2 = parseInt(date_hiper_parsed_2[1]);
+  var day2 = date_hiper_parsed_2[2];
   var dateclass = year2 + "-" + month2 + "-" + day2;
-
+  console.log(dateclass);
+  console.log(datex);
   if(dateclass == datex){
-    dateaccess = 'cyan today-s';
+    dateaccess = 'green today-s';
   } else {
-    dateaccess = 'green no-today';
+    dateaccess = 'standar no-today';
   }
   return dateaccess;
 });

@@ -95,10 +95,12 @@
     <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white"> 
       <p>{{coment_text}}</p> <!-- message text -->
       {{#if attachment}}
-      <a id="img{{id}}" >Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
+      <a id="img{{id}}">Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
       <script>
          $('#img{{id}}').click(function(){
-            window.open("{{attachment}}", '_system');
+            var attachment = "{{attachment}}";
+            console.log(attachment);
+            window.open(attachment, '_system');
           });
       </script>
       {{/if}}
@@ -175,6 +177,7 @@
             $("#"+divloadtpl).append(output);
             $('#'+divloadtpl).addClass('animated slideInDown');
           }, 200);
+         
         });  
       }
              

@@ -1123,6 +1123,9 @@ thead, tbody, .mdl-data-table__cell--non-numeric {
 .red {
 	background-color: #E57373;
 }
+.standar{
+	background-color: #0097A7;
+}
 
 
 /* MEDIA QUERIES */
