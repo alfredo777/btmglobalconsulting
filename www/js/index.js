@@ -38,7 +38,7 @@ var app = {
                 "vibration": true,
                 "badge": true
             },
-            "browser": {},
+            "browser": {}
         });
         /*
          "android": {
