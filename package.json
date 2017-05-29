@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/phonegap/phonegap-app-hello-world",
     "dependencies": {
+        "cordova-android": "~6.2.1",
         "cordova-ios": "^4.4.0",
         "phonegap-plugin-push": "git+https://github.com/phonegap/phonegap-plugin-push.git"
     },
@@ -27,6 +28,9 @@
             "phonegap-plugin-push": {
                 "SENDER_ID": "865866583528"
             }
-        }
+        },
+        "platforms": [
+            "android"
+        ]
     }
 }
