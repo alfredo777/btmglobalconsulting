@@ -119,7 +119,7 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDS4NNnajRupjtueTjTks9UYqouFo02eOo" />
     </plugin>
     <plugin name="phonegap-plugin-push" spec="https://github.com/phonegap/phonegap-plugin-push">
-        <variable name="SENDER_ID" value="123456789" />
+        <variable name="SENDER_ID" value="865866583528" />
     </plugin>
     <plugin name="cordova-plugin-ios-camera-permissions" spec="~1.1.1" />
     <feature name="http://api.phonegap.com/1.0/camera" />
