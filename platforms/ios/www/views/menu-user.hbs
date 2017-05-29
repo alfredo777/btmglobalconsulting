@@ -1,0 +1,46 @@
+  
+<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+      <!-- Spacer -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Right Menu -->
+      <!-- <button class="mdl-button mdl-js-button mdl-button--icon">
+      <a href="edit-profile.html" style="color: #fff!important;"><i class="material-icons">edit</i></a>
+      </button> -->
+      <!-- <button class="mdl-button mdl-js-button mdl-button--icon">
+      <a href="notifications.html" style="color: #fff!important;"> <i class="material-icons">notifications</i></a>
+      </button> -->
+    </div>
+  </header>
+  <!-- Top-right Dropdown Menu -->
+  <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="top-header-menu">
+    <a href="login.html" class="animsition-link"><span class="mdl-menu__item">Login</span></a>
+    <a href="messages.html" class="animsition-link"><span class="mdl-menu__item mdl-badge" data-badge="4">Notifications</span></a>
+    <!-- <a href="player.html" class="animsition-link"><span class="mdl-menu__item">Player</span></a> -->
+    <a href="calendar.html" class="animsition-link"><span class="mdl-menu__item">
+  </div>
+    <!-- Sidebar -->
+    <div class="mdl-layout__drawer">
+      <!-- Top -->
+      <div class="mdl-card mdl-shadow--2dp mdl-color--primary mdl-color-text--blue-grey-50 drawer-profile">
+        <div class="mdl-card__title user">
+          <img src="img/user.jpg" alt="" />
+          <span class="user-name">{{user.first_name}} {{user.last_name}}</span>
+          <span class="user-mail">{{user.email}}</span>
+          
+        </div>
+        <!-- Top-right User -->
+        <div class="mdl-card__menu">
+          <img class="sub-user" src="img/sub-user.jpg" alt="" />
+        </div>
+      </div>
+      
+      <!-- Main Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link animsition-link" href="calendar.html"> <i class="fa fa-calendar" aria-hidden="true"></i> <span> Calendar</span></a>
+        <a class="mdl-navigation__link animsition-link" href="profile.html"><i class="material-icons">account_circle</i><span>Profile</span></a>
+        <a class="mdl-navigation__link animsition-link" href="login.html"><i class="material-icons">cancel
+          </i><span>Log Out</span></a>
+        </nav>
+      </div>

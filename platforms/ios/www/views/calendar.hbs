@@ -1,0 +1,54 @@
+<!-- Page Content -->
+<main class="mdl-layout__content">
+<div id="calendarup" style="position: fixed; width: 100%; height: 20px; padding: 20px 0; background: #003462; color:#fff; font-size:25px; z-index: 100;"><center> <i class="fa fa-calendar" aria-hidden="true"></i> Calendar</center></div><br/><br/><br/><br/>
+<script>
+   var connection = window.localStorage.getItem("networkXX");
+   if(connection == "true"){
+     var url = 'http://btmconsulting-api.herokuapp.com/agenda_usuario_json?Mail='+"{{user.email}}";
+     console.log(url);
+     $.ajax({
+              url: url,
+              type: 'get',
+              dataType: 'json',
+              success: function (data) {
+                dataz = JSON.stringify(data);
+                window.localStorage.setItem("cites", dataz);
+
+                var cites = window.localStorage.getItem("cites");
+
+                loadView(JSON.parse(cites),'calendar-single-view','append-calendar');
+
+              }
+      });
+    }else{
+      var cites = window.localStorage.getItem("cites");
+      loadView(JSON.parse(cites),'calendar-single-view','append-calendar');
+    }
+</script>
+
+<div id="append-calendar" style="color:#000;"><center>Loading ...</center></div>
+
+
+
+
+</main>
+
+<script>
+$('#calendarup').click(function(){
+  $('#append-calendar').html("<center>Loading and Update ...</center>");
+  var url = "http://btmconsulting-api.herokuapp.com/agenda_usuario_json?Mail="+"{{user.email}}";
+  //var url = "http://192.168.1.75:3000/agenda_usuario_json?Mail="+"{{user.email}}";
+  $.ajax({
+    url: url,
+    type: 'get',
+    dataType: 'json',
+      success: function (data) {
+        dataz = JSON.stringify(data);
+        window.localStorage.setItem("cites", dataz);
+        var cites = window.localStorage.getItem("cites");
+        loadView(JSON.parse(cites),'calendar-single-view','append-calendar');
+      }
+  });
+});
+</script>
+

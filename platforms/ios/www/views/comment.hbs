@@ -1,0 +1,23 @@
+<li class="message-right" id="comment-{{comment.id}}"> <!-- right message -->
+  <img src="" alt="" class="minilogo mdl-shadow--2dp">
+  <script>
+    $(document).ready(function(){
+      var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+      $('.minilogo').attr('src', img_mini);
+    });
+    </script>
+  <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white">
+    <p>{{ comment.coment_text}}</p> <!-- message text -->
+    {{#if comment.attachment}}
+    <a id="img{{comment.id}}" >Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
+    <script>
+    $('#img{{comment.id}}').click(function() {
+       window.open("{{comment.attachment}}", '_system');
+    });
+    </script>
+    {{/if}}
+    <span>{{parsedPretyDate2 comment.created_at}}</span>
+    <span><a onclick="destroyComment({{comment.id}})"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+ <!-- message time -->
+  </div>
+</li>

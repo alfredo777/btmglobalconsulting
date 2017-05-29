@@ -1,0 +1,69 @@
+<header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+      <!-- Spacer -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Right Menu -->
+     <!--  <button class="mdl-button mdl-js-button mdl-button--icon">
+      <a href="#" onclick="edit()" style="color: #fff!important;"><i class="material-icons">edit</i></a>
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--icon">
+      <a href="notifications.html" style="color: #fff!important;"> <i class="material-icons">notifications</i></a>
+      </button> -->
+    </div>
+  </header>
+<div class="mdl-card mdl-shadow--2dp mdl-color--primary mdl-color-text--blue-grey-50 drawer-profile">
+  <div class="mdl-card__title user">
+    <img src="data:image/jpg;base64," alt="" id="avatar-mini"/>
+    <script>
+    $(document).ready(function(){
+      var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+      $('#avatar-mini').attr('src', img_mini);
+    });
+    </script>
+    <span class="user-name">{{user.first_name}} {{user.last_name}}</span>
+    <span class="user-mail">{{user.email}}</span>
+    <button id="user-menu" class="mdl-button mdl-js-button mdl-button--icon">
+    </button>
+  </div>
+  <!-- Top-right User -->
+  
+</div>
+<!-- Dropdown Menu -->
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-menu">
+  <li class="mdl-menu__item">hello@email.com</li>
+  <li class="mdl-menu__item">info@domain.net</li>
+  <li class="mdl-menu__item">Add another account...</li>
+</ul>
+<nav class="mdl-navigation">
+  <a class="mdl-navigation__link animsition-link" href="#" onclick="calendar()"><i class="material-icons">today</i><span>Calendar</span></a>
+  <a class="mdl-navigation__link animsition-link" href="#" onclick="gethome()"><i class="material-icons">account_circle</i><span>Profile</span></a>
+  <a class="mdl-navigation__link animsition-link" href="#" onclick="exit()"><i class="material-icons">cancel
+    </i><span>Log Out</span></a>
+  </nav>
+
+  <script>
+  var datax = window.localStorage.getItem("userAccess");
+  var userx = JSON.parse(datax);
+  function gethome(){
+  loadView(userx,'profile','load-in-body');
+  $('.mdl-layout__drawer').removeClass('is-visible');
+  }
+  function calendar(){
+
+  loadView(userx,'calendar','load-in-body');
+    $('.mdl-layout__drawer').removeClass('is-visible');
+
+  }
+
+  function edit(){
+
+  loadView(userx,'edit_profile','load-in-body');
+    $('.mdl-layout__drawer').removeClass('is-visible');
+
+  }
+
+  function exit(){
+    window.localStorage.setItem("loggedIn",0);
+    location.reload();
+  }
+  </script>

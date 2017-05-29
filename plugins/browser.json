@@ -67,11 +67,10 @@
         "cordova-plugin-googlemaps": {
             "PACKAGE_NAME": "btmconsultin.heroku.com"
         },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "123456789",
+        "cordova-plugin-ios-camera-permissions": {
             "PACKAGE_NAME": "com.gbmt.app"
         },
-        "cordova-plugin-ios-camera-permissions": {
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.gbmt.app"
         }
     },

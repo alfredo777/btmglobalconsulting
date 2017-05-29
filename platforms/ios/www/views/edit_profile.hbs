@@ -1,0 +1,221 @@
+<main class="mdl-layout__content">
+<div class="login"> <!-- card -->
+<div class="account-info mdl-color--primary">
+    <div class="account-navigation"> <!-- top icons -->
+	<button class="mdl-button mdl-js-button mdl-button--icon right">
+	<a class="mdl-button mdl-js-button mdl-button--icon left" onclick="gethome()"> <i class="material-icons">close</i></a>
+	</button>
+	<div class="clr"></div>
+	<div class="mdl-card__title user">
+   	<img style="width:80px;height:80px;" id="smallImage" src="" />
+   	<script>
+    $(document).ready(function(){
+      var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+      $('#smallImage').attr('src', img_mini);
+    });
+    </script>
+    </div>
+	<a id="camera" onclick="capturePhoto();" style="margin-left:40px; margin-top: 20px; color: #fff; font-size: 18px;"><i class="fa fa-camera" aria-hidden="true"></i></a>
+
+</div>
+</div>
+<div class="account-data"> <!-- text fields -->
+<form id="update">
+	<input class="mdl-textfield__input" type="text" id="email" name="email" value="{{user.email}}"  style="display:none;"/>
+
+    <label>First Name</label>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+	<input class="mdl-textfield__input" type="text" id="first_name" name="first_name" value="{{user.first_name}}" /><br/><br/>
+
+</div>
+<label>Last Name</label>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+	<input class="mdl-textfield__input" type="text" id="last_name" name="last_name" value="{{user.last_name}}" /><br/><br/>
+</div>
+<label>Linkedin</label>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+	<input class="mdl-textfield__input" type="text" id="linkedin" name="linkedin" value="{{user.linkedin}}" /><br/><br/>
+</div>
+</form>
+
+<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary right" onclick="sendData()"> Save Changes</a>
+
+
+<div class="clr"></div>
+
+</div>
+</div>
+</main>
+
+<script type="text/javascript" charset="utf-8">
+	 
+
+
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+// Wait for PhoneGap to connect with the device
+//
+document.addEventListener("deviceready",onDeviceReady,false);
+// PhoneGap is ready to be used!
+//
+function onDeviceReady() {
+pictureSource=navigator.camera.PictureSourceType;
+destinationType=navigator.camera.DestinationType;
+}
+// Called when a photo is successfully retrieved
+//
+function onPhotoDataSuccess(imageData) {
+// Uncomment to view the base64 encoded image data
+// console.log(imageData);
+// Get image handle
+//
+var smallImage = document.getElementById('smallImage');
+// Unhide image elements
+//
+smallImage.style.display = 'block';
+// Show the captured photo
+// The inline CSS rules are used to resize the image
+//var img = "data:image/jpeg;base64," + imageData;
+var img = imageData;
+smallImage.src = img;
+
+uploadPhoto(img);
+
+}
+// Called when a photo is successfully retrieved
+//
+function onPhotoURISuccess(imageURI) {
+// Uncomment to view the image file URI
+// console.log(imageURI);
+// Get image handle
+//
+var largeImage = document.getElementById('largeImage');
+// Unhide image elements
+//
+largeImage.style.display = 'block';
+// Show the captured photo
+// The inline CSS rules are used to resize the image
+//
+largeImage.src = imageURI;
+}
+// A button will call this function
+//
+function capturePhoto() {
+// Take picture using device camera and retrieve image as base64-encoded string
+navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 150 });
+}
+// A button will call this function
+//
+function capturePhotoEdit() {
+// Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true });
+}
+// A button will call this function
+//
+function getPhoto(source) {
+// Retrieve image file location from specified source
+navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+destinationType: destinationType.FILE_URI,
+sourceType: source });
+}
+// Called if something bad happens.
+//
+function onFail(message) {
+alert('Failed because: ' + message);
+}
+
+function uploadPhoto(imageURI) {
+	var op;
+	op = new FileUploadOptions();
+
+	op.headers = {
+	    Connection: "close"
+	};
+
+	var imageURI = document.getElementById('smallImage').getAttribute("src");
+	console.log(imageURI);
+    if (!imageURI) {
+        alert('Please select an image first.');
+        return;
+    }
+
+    //var urlToSend = "http://192.168.1.75:3000/actualizar_avatar"
+    var urlToSend = "http://btmconsulting-api.herokuapp.com/actualizar_avatar"
+    var urlCVB = encodeURI(urlToSend);
+    var win = function(r) {
+         console.log("Code = " + r.responseCode + '\n' +
+         "Sent = " + r.bytesSent);
+          var data = JSON.parse(r.response);
+          console.log(data.avatar_mini);
+          window.localStorage.setItem("avatar_mini", data.avatar_mini);
+          window.localStorage.setItem("avatar_large", data.avatar_large);
+          alert(data.notice);
+          var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+          $('#avatar-mini').attr('src', img_mini);
+
+
+    }
+
+    var fail = function(error) {
+         console.log("An error has occurred: Code = " + JSON.stringify(error)  + '\n' +
+          "upload error source " + error.source + '\n' +
+          "upload error target " + error.target);
+    }
+
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+    options.mimeType="image/jpeg";
+
+    var params = new Object();
+    params.email = "{{user.email}}";
+    params.id = "{{user.id}}";
+    options.params = params;
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI,urlCVB, win, fail, options);
+}
+
+function sendData(){
+  	var url = "http://btmconsulting-api.herokuapp.com/actualizar_usuario";
+  	//var url = "http://192.168.1.75:3000/actualizar_usuario";
+
+  	console.log(url);
+    var data = {
+        first_name: $("#first_name").val(),
+        last_name:$("#last_name").val(),
+        email: $("#email").val(),
+        linkedin: $('#linkedin').val()
+    }
+    /*var data = JSON.stringify(data);
+    console.log(data);*/
+  	$.ajax({
+            url: url,
+            type: 'post',
+            dataType: "json",
+            contentType: "application/json",
+            processData: false,
+            data: JSON.stringify(data),
+            success: function (data) {
+                var inkuser = {'user': data.user};
+                var userInO = JSON.stringify(inkuser);
+                console.log(userInO);
+                window.localStorage.setItem("userId", data.user.id);
+                window.localStorage.setItem("userAccess", userInO);
+                var userInOX = window.localStorage.getItem("userAccess");
+                setTimeout(function(){
+                loadView(JSON.parse(userInOX),'profile','load-in-body');
+                },400);
+                setTimeout(function(){
+                loadView(JSON.parse(userInOX),'menu','load-menu');
+                },400);
+                alert(data.notice);
+
+            }
+
+             
+       });  
+	 return false;
+}
+
+</script>

@@ -34,16 +34,18 @@ var app = {
         console.log('calling push init');
         var push = PushNotification.init({
             "android": {
-                "senderID": "XXXXXXXX"
+                "senderID": "865866583528"
             },
-            "browser": {},
+            "windows": {},
             "ios": {
                 "sound": true,
                 "vibration": true,
                 "badge": true
             },
-            "windows": {}
+            "browser": {}
         });
+       
+         
         console.log('after init');
          
         push.on('registration', function(data) {

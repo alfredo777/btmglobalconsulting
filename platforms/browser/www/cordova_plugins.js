@@ -653,8 +653,8 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.4",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-googlemaps": "1.4.0",
-    "phonegap-plugin-push": "1.10.4",
-    "cordova-plugin-ios-camera-permissions": "1.1.1"
+    "cordova-plugin-ios-camera-permissions": "1.1.1",
+    "phonegap-plugin-push": "2.0.0-rc3"
 }
 // BOTTOM OF METADATA
 });

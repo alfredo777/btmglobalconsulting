@@ -1,0 +1,258 @@
+<!-- Page Content -->
+<main class="mdl-layout__content" style="background-color: #fff;">
+<div id="calendarup" style="position: fixed; width: 100%; height: 20px; padding: 20px 0; background: #003462; color:#fff; font-size:25px; z-index: 100;"><center> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Meeting</center><a href="#" onclick="calendar()" style="color: white!important; float: right; margin-top: -30px; margin-right:10px; z-index: 120;"> <i class="material-icons">arrow_back</i></a></div><br/><br/><br/>
+          
+             
+
+
+<div class="mdl-card mdl-shadow--2dp  drawer-profile">
+  <div class="mdl-card__title user" style="background-color: #0097A7; height: 180px; padding-top: 0px; overflow:auto;">
+    <p style="width: 95%; float: left; padding-left: 20px; font-size: 12px; line-height: 15px; text-align: justify;">
+
+    <span class="calendar-hour" style="opacity: 0.7;"><h6 style="font-size: 12px;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{parsedPretyDate fecha_cita}}</h6></span>
+    <h4 style="font-size: 15px; font-weight: bold; margin: -20px 0 0 0;"><i class="fa fa-industry" aria-hidden="true"></i> {{contacto_empresa}}:</h4>
+    {{#if instrucciones}}
+    <h5>Instructions:</h5>{{instrucciones}}<br/>
+    {{/if}}
+    {{#if descripccion}}
+    <p style="font-size: 12px; line-height: 15px;">{{descripccion}}</p>
+    {{/if}}
+  </div>
+  <div class="mdl-card__title user" style=" background-color: #f0f0f0!important; height: 90px; z-index: 10;">
+    <span class="user-name" style="text-align: center; color: #000!important; padding: 15px; font-size: 20px; opacity: 0.6;"><i class="fa fa-user" aria-hidden="true" style="color: #000!important;"></i> {{contacto_nombre}}</span>
+  </div>
+  <!-- Top-right User -->
+</div>
+<div class="contact-about" style="margin-top:0; width: 110%; margin-left: -30px; z-index: 9; padding-top: 0!important;">
+  <div class="mdl-card ">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" id="call"><i class="material-icons">call</i></a>
+        <span>Call</span>
+
+        <script>
+            $('#call').click(function () {
+                var phone = "{{contacto_telefono}}".replace(/\D/g,"");
+                window.open("tel:"+phone, '_system');
+                return false;
+            });
+        </script>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" id="sms"><i class="material-icons">sms</i>
+        </a>
+        <span>SMS</span>
+
+        <script>
+            $('#sms').click(function () {
+                var phone = "{{contacto_telefono}}".replace(/\D/g,"");
+                window.open("sms:"+phone+"&body=Hi,%20I'm%20at%20the%20meeting%20place%20already.", '_system');
+                return false;
+            });
+        </script>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <a class="no-accent-color" onclick="window.open('mailto://{{contacto_mail}}?Subject=From {{user.first_name}} {{user.last_name}} BTMconsulting', '_system')"><i class="material-icons">mail</i></a>
+        <span>Mail</span>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: -60px; background-color: #fff; padding-bottom: 10px;">
+<h4>
+<center>
+<a class="no-accent-color" onclick="window.open('https://www.google.com/maps/search/{{staticLinkByGoogleData lugar_cita lugar_cita2}}', '_system')">
+<img src="img/map.jpg" style="width: 100%; height: auto; background-color: #000;">
+</a>
+<p style="margin-top: 20px; font-size: 13px;">{{{lugar_cita}}} {{{lugar_cita2}}}</p>
+</center>
+</h4>
+</div>
+
+<div style="margin-top: -10px; border-bottom: 1px solid #f0f0f0;">
+<center>
+<h4>How do you rate this meeting?</h4>
+<div style="width:100%; padding-bottom: 40px;">
+<div id="rating_cite" class="c-rating" style="width:30%;">
+</div>
+</div>
+</center>
+</div>
+
+<div class="chat mdl-shadow--2dp" style="background-color: #f0f0f0;">
+<ul id="addcomment">
+ {{#each comments}}
+   <li class="message-right" id="comment-{{id}}"> <!-- right message -->
+   <!--  <img src="" alt="" class="minilogo mdl-shadow--2dp"> 
+    <script>
+    $(document).ready(function(){
+      var img_mini =  "data:image/jpg;base64," + window.localStorage.getItem("avatar_mini");
+      $('.minilogo').attr('src', img_mini);
+    });
+    </script> -->
+    <div class="message mdl-shadow--2dp mdl-color--primary mdl-color-text--white"> 
+      <p>{{coment_text}}</p> <!-- message text -->
+      {{#if attachment}}
+      <a id="img{{id}}">Attachment <i class="fa fa-paperclip" aria-hidden="true"></i></a> <br/><br/>
+      <script>
+         $('#img{{id}}').click(function(){
+            var attachment = "{{attachment}}";
+            console.log(attachment);
+            window.open(attachment, '_system');
+          });
+      </script>
+      {{/if}}
+
+      <span>{{parsedPretyDate2 created_at}}</span> 
+      <span><a onclick="destroyComment({{id}})"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+    </div>
+    </li>
+ {{/each}}
+
+</ul>
+
+<br/><br/><br/><br/><br/><br/>
+</div>
+<!-- write message fixed bottom -->
+<div class="write-message mdl-shadow--2dp">
+<form id="send_coment" enctype="multipart/form-data" >
+  <a class="mdl-button mdl-js-button mdl-button--icon" id="open_attachment" href="#">
+  <i class="material-icons">attach_file</i>
+  </a>
+  <div class="mdl-textfield mdl-js-textfield textfield-demo">
+    <div style="display:none;">
+    <input type="text" name="id" value="{{id}}" id="id">
+    <input type="text" name="user_app_id" value="" id="user_app_id">
+    <input type="file" name="attachment" id="attachment">
+
+    <script>
+     $('#user_app_id').val(window.localStorage.getItem("userId"));
+      
+      $('#open_attachment').click(function(){
+        $('#attachment').trigger("click");
+      });
+
+    </script>
+     
+    </div>
+    <input class="mdl-textfield__input" type="text" id="coment_text" name="coment_text" placeholder="Type comment..."/>
+    <label class="mdl-textfield__label" for="coment_text" ></label>
+  </div>
+
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored send">
+  <i class="material-icons">send</i>
+  </button>
+</form>
+
+</div>
+</main>
+
+
+<script>
+  $('#send_coment').submit(function(){
+    var formData = new FormData($(this)[0]);
+      console.log(formData);
+
+    var formDataSerialized = $(this).serialize();
+      console.log(formDataSerialized);
+    var url = "http://btmconsulting-api.herokuapp.com/agregar_comentario";
+    $.ajax({
+      url: url,
+      type: 'post',
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function (data) {
+        $('#send_coment')[0].reset();
+        alert("Comment success");
+        datas = JSON.stringify(data);
+        divloadtpl = 'addcomment';
+        getTemplate('comment', data, function(output, err) {
+          $('#'+divloadtpl).addClass('animated fadeOut');
+          setTimeout(function(){
+            $("#"+divloadtpl).append(output);
+            $('#'+divloadtpl).addClass('animated slideInDown');
+          }, 200);
+         
+        });  
+      }
+             
+    });  
+    return false;
+  });
+
+  function destroyComment(id){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+    if (confirm('Are you sure to destroy this comment?')) {
+      var url = "http://btmconsulting-api.herokuapp.com/eliminar_comentario?id="+id;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+          $('#comment-'+id).hide();
+        }
+               
+      }); 
+    } else {
+      console.log('Not eliminate')
+    }
+  }
+  
+
+  $(document).ready(function(){
+  // target element
+  var rate_default = "{{rating}}";
+  console.log("<<<<<<<<<<<<<<"+rate_default);
+
+  var el = document.querySelector('#rating_cite');
+
+  // current rating, or initial rating
+  var currentRating = 0;
+
+  // max rating, i.e. number of stars you want
+  var maxRating= 5;
+
+  // callback to run after setting the rating
+  var callback = function(rating) { sendRate(rating); };
+
+  // rating instance
+  var myRating = rating(el, currentRating, maxRating, callback);
+
+  myRating.setRating(rate_default, true);
+  });
+
+
+  function sendRate(rating){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+      var url = "http://btmconsulting-api.herokuapp.com/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      //var url ="http://192.168.1.75:3000/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+        }
+               
+      }); 
+  }
+  
+
+
+</script>
