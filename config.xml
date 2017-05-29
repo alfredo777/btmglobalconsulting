@@ -122,7 +122,7 @@
     <feature name="http://api.phonegap.com/1.0/file" />
     <feature name="http://api.phonegap.com/1.0/notification" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.3.0" />
-    <plugin name="phonegap-plugin-push" spec="https://github.com/phonegap/phonegap-plugin-push">
+    <plugin name="phonegap-plugin-push" source="npm" spec="1.10.4">
         <variable name="SENDER_ID" value="865866583528" />
     </plugin>
     <engine name="android" spec="~6.2.1" />
