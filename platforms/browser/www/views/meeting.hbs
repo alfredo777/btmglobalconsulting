@@ -10,9 +10,9 @@
     <p style="width: 95%; float: left; padding-left: 20px; font-size: 12px; line-height: 15px; text-align: justify;">
 
     <span class="calendar-hour" style="opacity: 0.7;"><h6 style="font-size: 12px;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{parsedPretyDate fecha_cita}}</h6></span>
-    <h4 style="font-size: 15px; font-weight: bold; margin: -20px 0 0 0;"><i class="fa fa-industry" aria-hidden="true"></i> {{contacto_empresa}}:</h4>
+    <h4 style="font-size: 15px; font-weight: bold; margin: -12px 0 15px 0; line-height: 15px;"><i class="fa fa-industry" aria-hidden="true"></i> {{contacto_empresa}}:</h4>
     {{#if instrucciones}}
-    <h5>Instructions:</h5>{{instrucciones}}<br/>
+    <p style="font-size: 12px; line-height: 15px;">{{instrucciones}}</p> 
     {{/if}}
     {{#if descripccion}}
     <p style="font-size: 12px; line-height: 15px;">{{descripccion}}</p>

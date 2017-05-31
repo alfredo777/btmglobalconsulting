@@ -73,7 +73,7 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>GBTM Calendar</name>
+    <name>GBMT Calendar</name>
     <description>
        App de  BTM Consulting
     </description>

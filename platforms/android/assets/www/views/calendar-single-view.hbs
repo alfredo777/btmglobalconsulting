@@ -1,4 +1,4 @@
-
+{{#if non_relative}}
 {{#each non_relative}}
 <div class="calendar-day" style="z-index: 3; height: 100px; padding-top: 5px; ">
   <!-- day date -->
@@ -9,7 +9,7 @@
   <!-- day colored activity -->
 
   <a id="get-to-{{@index}}" >
-  <div class="calendar-activity {{compareDate fecha_cita}}" style="height: 60px; line-height: 18px; " >
+  <div class="calendar-activity {{compareDate fecha_cita}}" style="min-height: 60px;height: 90%; line-height: 18px; " >
     <!--  <a id="sa-success" class="mdl-button mdl-js-button"><i class="material-icons">close</i></a> -->
     <span style="font-size: 15px; font-weight: 300;"><i class="fa fa-user" aria-hidden="true"></i> {{contacto_nombre}}</span><br/>
     <span style="font-size: 12px; font-weight: bold; margin-top: -7px;"><i class="fa fa-industry" aria-hidden="true"></i> {{contacto_empresa}}</span>
@@ -27,4 +27,7 @@
   <div class="clr"></div><hr style="opacity: 0.4; padding: 0;">
 </a>
 {{/each}}
+{{else}}
+  <center>No matches found for this user <br/> <a href="#" onclick="calendar()">return to calendar</a>.</center>
+{{/if}}
 

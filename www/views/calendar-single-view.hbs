@@ -1,4 +1,4 @@
-
+{{#if non_relative}}
 {{#each non_relative}}
 <div class="calendar-day" style="z-index: 3; height: 100px; padding-top: 5px; ">
   <!-- day date -->
@@ -27,4 +27,7 @@
   <div class="clr"></div><hr style="opacity: 0.4; padding: 0;">
 </a>
 {{/each}}
+{{else}}
+  <center>No matches found for this user <br/> <a href="#" onclick="calendar()">return to calendar</a>.</center>
+{{/if}}
 

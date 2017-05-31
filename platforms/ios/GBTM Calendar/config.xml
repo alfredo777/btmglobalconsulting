@@ -113,7 +113,7 @@
     <feature name="PushNotification">
         <param name="ios-package" value="PushPlugin" />
     </feature>
-    <name>GBTM Calendar</name>
+    <name>GBMT Calendar</name>
     <description>
        App de  BTM Consulting
     </description>
