@@ -12,7 +12,13 @@
 <div id="target"></div><!-- text fields -->
 <form id="login">
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-  <input class="mdl-textfield__input" type="text" id="id-email" name="email" value="nkayabasi@hascevher.com.tr" placeholder="Enter your email" />
+  <!--<input class="mdl-textfield__input" type="text" id="id-email" name="email" value="nkayabasi@hascevher.com.tr" placeholder="Enter your email" />
+  <input class="mdl-textfield__input" type="text" id="id-email" name="email" value="leon@somosfut.com" placeholder="Enter your email" />-->
+  <select name="email" id="id-email">
+    <option value="null">Selecciona un correo ..</option>
+    <option value="nkayabasi@hascevher.com.tr">Usuario Sencillo</option>
+    <option value="leon@somosfut.com">Usuario Multiple</option>
+  </select>
   <label class="mdl-textfield__label" for="sample1"></label>
 </div>
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
@@ -23,7 +29,7 @@
 Login
 </button>
 </form>
-<a class="left" href="#">Forgot password?</a>
+<!--<a class="left" href="#">Forgot password?</a>-->
 
 <div class="clr"></div>
 </div>
@@ -32,9 +38,10 @@ Login
 
 <script>
   $('#login').submit(function(){
+    console.log($("#id-email").val());
   	var url = 'http://btmconsulting-api.herokuapp.com/verificador_de_password'
     //var url = 'http://172.20.10.8:3000/verificador_de_password'
-   // var url = 'http://192.168.1.75:3000/verificador_de_password'
+    //var url = 'http://192.168.1.75:3000/verificador_de_password'
 
   	var user = {
             email: $("#id-email").val(),
@@ -61,12 +68,29 @@ Login
                 if(data.active == true){
                 var inkuser = {'user': data.user};
                 var userInO = JSON.stringify(inkuser);
+                
+                if(data.extracounts == null){
+                  var extracounts = false;
+                  var datacount = null;
+                }else{
+                  var extracounts = data.extracounts;
+                  var res = data.array_acounts;
+                  var datacount = {'accounts': res};
+                  datacount = JSON.stringify(datacount);
+                }
+           
+                console.log(datacount);
+
+                console.log(extracounts);
+
                 window.localStorage.setItem("loggedIn", 1);
                 window.localStorage.setItem("userId", data.user.id);
                 window.localStorage.setItem("userAccess", userInO);
                 window.localStorage.setItem("activeUser", data.active);
                 window.localStorage.setItem("avatar_mini", data.avatar_mini);
                 window.localStorage.setItem("avatar_large", data.avatar_large);
+                window.localStorage.setItem("accounts_array", datacount);
+                window.localStorage.setItem("extracounts", extracounts);
                 window.localStorage.setItem("cites", 0);
                 var userInOX = window.localStorage.getItem("userAccess");
                 setTimeout(function(){

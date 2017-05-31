@@ -187,8 +187,6 @@ Handlebars.registerHelper("compareDate", function(date){
   var month2 = parseInt(date_hiper_parsed_2[1]);
   var day2 = date_hiper_parsed_2[2];
   var dateclass = year2 + "-" + month2 + "-" + day2;
-  console.log(dateclass);
-  console.log(datex);
   if(dateclass == datex){
     dateaccess = 'green today-s';
   } else {
@@ -196,7 +194,6 @@ Handlebars.registerHelper("compareDate", function(date){
   }
   return dateaccess;
 });
-
 
 function htmlEntities(str) {
     return String(str).replace('&amp;','').replace('&lt;','').replace('&gt;','').replace('&quot;','').replace('undefined','');
