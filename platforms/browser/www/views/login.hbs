@@ -69,19 +69,17 @@ Login
                 var inkuser = {'user': data.user};
                 var userInO = JSON.stringify(inkuser);
                 
-                if(data.extracounts == null){
-                  var extracounts = false;
-                  var datacount = null;
-                }else{
-                  var extracounts = data.extracounts;
-                  var res = data.array_acounts;
-                  var datacount = {'accounts': res};
-                  datacount = JSON.stringify(datacount);
-                }
-           
-                console.log(datacount);
-
-                console.log(extracounts);
+                    if(data.extracounts == ''){
+                      var extracounts = false;
+                      var datacount = '';
+                    }else{
+                      var extracounts = data.extracounts;
+                      var res = data.array_acounts;
+                      var datacount = {'accounts': res};
+                      datacount = JSON.stringify(datacount);
+                    }
+                    console.log(datacount);
+                    console.log(extracounts);
 
                 window.localStorage.setItem("loggedIn", 1);
                 window.localStorage.setItem("userId", data.user.id);
@@ -103,8 +101,9 @@ Login
                 }else{
                 	alert('Intenta nuevamente');
                 }
-
-
+            },
+            error: function(e){
+              console.log('Error: '+ JSON.stringify(e));
             },
             data: user
        });  
