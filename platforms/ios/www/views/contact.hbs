@@ -1,0 +1,125 @@
+<!-- Page Content -->
+<main class="mdl-layout__content" style="background-color: #fff;">
+<div id="calendarup" style="position: fixed; width: 100%; height: 20px; padding: 20px 0; background: #003462; color:#fff; font-size:25px; z-index: 100;"><center> <i class="fa fa-phone" aria-hidden="true"></i> Contact Us</center></div><br/><br/><br/>
+          
+             
+
+
+<ul>
+  <li>
+    <li>Direccion: <a href="https://goo.gl/maps/tssdRBJX4iF2"> Av. Homero 109 S – 904 Col. Polanco, 11560, México City</a></li>
+    <li>Telefono <a href ="tel:5250-9311">(+52 55) 5250-9311</a></li>
+    <li>Web: <a href="www.globalbmtconsulting.com">www.globalbmtconsulting.com</a></li>
+    <li>Email: <a href="mailto:egallardo@globalbmt.com">egallardo@globalbmt.com</a></li>
+  </li>
+</ul>
+</div>
+</main>
+
+
+<script>
+  $('#send_coment').submit(function(){
+    var formData = new FormData($(this)[0]);
+      console.log(formData);
+
+    var formDataSerialized = $(this).serialize();
+      console.log(formDataSerialized);
+    var url = "http://btmconsulting-api.herokuapp.com/agregar_comentario";
+    $.ajax({
+      url: url,
+      type: 'post',
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function (data) {
+        $('#send_coment')[0].reset();
+        alert("Comment success");
+        datas = JSON.stringify(data);
+        divloadtpl = 'addcomment';
+        getTemplate('comment', data, function(output, err) {
+          $('#'+divloadtpl).addClass('animated fadeOut');
+          setTimeout(function(){
+            $("#"+divloadtpl).append(output);
+            $('#'+divloadtpl).addClass('animated slideInDown');
+          }, 200);
+         
+        });  
+      }
+             
+    });  
+    return false;
+  });
+
+  function destroyComment(id){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+    if (confirm('Are you sure to destroy this comment?')) {
+      var url = "http://btmconsulting-api.herokuapp.com/eliminar_comentario?id="+id;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+          $('#comment-'+id).hide();
+        }
+               
+      }); 
+    } else {
+      console.log('Not eliminate')
+    }
+  }
+  
+
+  $(document).ready(function(){
+  // target element
+  var rate_default = "{{rating}}";
+  console.log("<<<<<<<<<<<<<<"+rate_default);
+
+  var el = document.querySelector('#rating_cite');
+
+  // current rating, or initial rating
+  var currentRating = 0;
+
+  // max rating, i.e. number of stars you want
+  var maxRating= 5;
+
+  // callback to run after setting the rating
+  var callback = function(rating) { sendRate(rating); };
+
+  // rating instance
+  var myRating = rating(el, currentRating, maxRating, callback);
+
+  myRating.setRating(rate_default, true);
+  });
+
+
+  function sendRate(rating){
+    console.log('Comentario a eliminar ' +id);
+    var id = id;
+      var url = "http://btmconsulting-api.herokuapp.com/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      //var url ="http://192.168.1.75:3000/actualizar_rating?id="+"{{id}}"+"&rating="+rating;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'post',
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data.notice);
+        }
+               
+      }); 
+  }
+  
+
+
+</script>

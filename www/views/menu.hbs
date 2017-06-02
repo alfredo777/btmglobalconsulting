@@ -37,6 +37,7 @@
 <nav class="mdl-navigation">
   <a class="mdl-navigation__link animsition-link" href="#" onclick="calendar()"><i class="material-icons">today</i><span>Calendar</span></a>
   <a class="mdl-navigation__link animsition-link" href="#" onclick="gethome()"><i class="material-icons">account_circle</i><span>Profile</span></a>
+  <a class="mdl-navigation__link animsition-link" href="#" onclick="contact()"><i class="material-icons">call</i><span>Contact Us</span></a>
   <a class="mdl-navigation__link animsition-link" href="#" onclick="exit()"><i class="material-icons">cancel
     </i><span>Log Out</span></a>
   </nav>
@@ -54,6 +55,15 @@
     $('.mdl-layout__drawer').removeClass('is-visible');
 
   }
+
+  function contact(){
+
+  loadView(userx,'contact','load-in-body');
+    $('.mdl-layout__drawer').removeClass('is-visible');
+
+  }
+
+
 
   function edit(){
 
